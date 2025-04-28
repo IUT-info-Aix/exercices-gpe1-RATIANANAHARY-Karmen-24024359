@@ -5,13 +5,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.Separator;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -24,23 +18,27 @@ public class FenetreLogiciel extends Application {
     public void start(Stage primaryStage) {
         BorderPane root = new BorderPane();
 
-        MenuBar menuBar = new MenuBar();
+        Menu menuFile = new Menu("File");
+        MenuItem itemFileNew = new MenuItem("New");
+        MenuItem itemFileOpen = new MenuItem("Open");
+        MenuItem itemFileSave = new MenuItem("Save");
+        MenuItem itemFileClose = new MenuItem("Close");
+        SeparatorMenuItem separateur1 = new SeparatorMenuItem();
+        SeparatorMenuItem separateur2 = new SeparatorMenuItem();
+        SeparatorMenuItem separateur3 = new SeparatorMenuItem();
+        menuFile.getItems().addAll(itemFileNew, separateur1, itemFileOpen, separateur2, itemFileSave,separateur3, itemFileClose);
 
-        // create File menu
-        Menu fileMenu = new Menu("File");
-        MenuItem newItem = new MenuItem("New");
-        MenuItem openItem = new MenuItem("Open");
-        MenuItem saveItem = new MenuItem("Save");
-        MenuItem exitItem = new MenuItem("Exit");
-        fileMenu.getItems().addAll(newItem, openItem, saveItem, exitItem);
+        Menu menuEdit = new Menu("Edit");
+        MenuItem itemEditCut = new MenuItem("Cut");
+        MenuItem itemEditCopy = new MenuItem("Copy");
+        MenuItem itemEditPaste = new MenuItem("Paste");
+        SeparatorMenuItem separateur4 = new SeparatorMenuItem();
+        SeparatorMenuItem separateur5 = new SeparatorMenuItem();
+        menuEdit.getItems().addAll(itemEditCut, separateur4, itemEditCopy,separateur5, itemEditPaste);
 
-        Menu editMenu = new Menu("Edit");
-        MenuItem cutItem = new MenuItem("Cut");
-        MenuItem copyItem = new MenuItem("Copy");
-        MenuItem pasteItem = new MenuItem("Paste");
-        editMenu.getItems().addAll(cutItem, copyItem, pasteItem);
-        menuBar.getMenus().addAll(fileMenu, editMenu, new Menu("Help"));
+        Menu menuHelp = new Menu("Help");
 
+        MenuBar menuBar = new MenuBar(menuFile, menuEdit, menuHelp);
         root.setTop(menuBar);
 
         VBox leftBox = new VBox();
@@ -80,7 +78,6 @@ public class FenetreLogiciel extends Application {
         VBox bas = new VBox(new Separator(Orientation.HORIZONTAL),statusLabel);
         bas.setAlignment(Pos.CENTER);
         root.setBottom(bas);
-
 
         Scene scene = new Scene(root, 600, 400);
         primaryStage.setScene(scene);
