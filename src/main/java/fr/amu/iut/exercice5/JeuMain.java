@@ -17,21 +17,16 @@ public class JeuMain extends Application {
 
         root = new BorderPane();
 
-        //Acteurs du jeu
         Personnage pacman = new Pacman();
         Personnage fantome = new Fantome();
-        // on positionne le fantôme 20 positions vers la droite
         fantome.setLayoutX(20 * 10);
-        //panneau du jeu
         Pane jeu = new Pane();
         jeu.setPrefSize(640, 480);
         jeu.getChildren().add(pacman);
         jeu.getChildren().add(fantome);
         root.setCenter(jeu);
-        //on construit une scene 640 * 480 pixels
         scene = new Scene(root);
 
-        //Gestion du déplacement du personnage
         deplacer(pacman, fantome);
 
         primaryStage.setTitle("... Pac Man ...");
@@ -56,15 +51,25 @@ public class JeuMain extends Application {
                 case RIGHT:
                     j1.deplacerADroite(scene.getWidth());
                     break;
-                case Z:
-                    //j2...... vers le haut;
+                case UP:
+                    j1.deplacerEnHaut();
                     break;
-
+                case DOWN:
+                    j1.deplacerEnBas(scene.getHeight());
+                    break;
+                case Z:
+                    j2.deplacerEnHaut();
+                    break;
+                case S:
+                    j2.deplacerEnBas(scene.getHeight());
+                    break;
+                case Q:
+                    j2.deplacerAGauche();
+                    break;
+                case D:
+                    j2.deplacerADroite(scene.getWidth());
+                    break;
             }
-            if (j1.estEnCollision(j2))
-                System.out.println("Collision....");
-        });
-    }
-
-
+        })
+    ;}
 }

@@ -8,13 +8,11 @@ public class Fantome extends Personnage {
 
     private Rectangle basCorps;
 
-
     private Circle oeilGauche;
     private Circle retineGauche;
 
     private Circle oeilDroit;
     private Circle retineDroite;
-
 
     public Fantome() {
         super("droite", Color.BLUE, Color.BLUE);
@@ -22,41 +20,55 @@ public class Fantome extends Personnage {
         basCorps.setFill(Color.BLUE);
 
         oeilGauche = new Circle(6, 6, 2, Color.WHITE);
-        //regarde vers la droite
-        retineGauche = new Circle(oeilGauche.getCenterX() + 1, 6, 1, Color.BLACK);
+        retineGauche = new Circle(7, 6, 1, Color.BLACK); // regarde droite
 
         oeilDroit = new Circle(14, 6, 2, Color.WHITE);
-        //regarde vers la droite
-        retineDroite = new Circle(oeilDroit.getCenterX() + 1, 6, 1, Color.BLACK);
+        retineDroite = new Circle(15, 6, 1, Color.BLACK); // regarde droite
 
-
-        super.getChildren().add(basCorps);
-        super.getChildren().add(oeilGauche);
-        super.getChildren().add(retineGauche);
-        super.getChildren().add(oeilDroit);
-        super.getChildren().add(retineDroite);
+        super.getChildren().addAll(basCorps, oeilGauche, retineGauche, oeilDroit, retineDroite);
     }
 
     @Override
     public void deplacerAGauche() {
+        super.deplacerAGauche();
+        // les rétines regardent à gauche
+        retineGauche.setCenterX(oeilGauche.getCenterX() - 1);
+        retineGauche.setCenterY(oeilGauche.getCenterY());
 
-
+        retineDroite.setCenterX(oeilDroit.getCenterX() - 1);
+        retineDroite.setCenterY(oeilDroit.getCenterY());
     }
 
     @Override
     public void deplacerADroite(double largeurJeu) {
+        super.deplacerADroite(largeurJeu);
+        // les rétines regardent à droite
+        retineGauche.setCenterX(oeilGauche.getCenterX() + 1);
+        retineGauche.setCenterY(oeilGauche.getCenterY());
 
+        retineDroite.setCenterX(oeilDroit.getCenterX() + 1);
+        retineDroite.setCenterY(oeilDroit.getCenterY());
     }
 
     @Override
     public void deplacerEnBas(double hauteurJeu) {
+        super.deplacerEnBas(hauteurJeu);
+        // les rétines regardent en bas
+        retineGauche.setCenterX(oeilGauche.getCenterX());
+        retineGauche.setCenterY(oeilGauche.getCenterY() + 1);
 
+        retineDroite.setCenterX(oeilDroit.getCenterX());
+        retineDroite.setCenterY(oeilDroit.getCenterY() + 1);
     }
 
     @Override
     public void deplacerEnHaut() {
+        super.deplacerEnHaut();
+        // les rétines regardent en haut
+        retineGauche.setCenterX(oeilGauche.getCenterX());
+        retineGauche.setCenterY(oeilGauche.getCenterY() - 1);
 
+        retineDroite.setCenterX(oeilDroit.getCenterX());
+        retineDroite.setCenterY(oeilDroit.getCenterY() - 1);
     }
-
-
 }

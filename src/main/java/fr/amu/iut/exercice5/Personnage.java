@@ -18,13 +18,6 @@ class Personnage extends Group {
     }
 
     public void deplacerAGauche() {
-        //    ****
-        //   *    *
-        //  *---   *
-        //   *    *
-        //    ****
-
-        //déplacement <----
         if (getLayoutX() >= LARGEUR_PERSONNAGE) {
             setLayoutX(getLayoutX() - LARGEUR_PERSONNAGE);
         }
@@ -34,12 +27,6 @@ class Personnage extends Group {
     }
 
     public void deplacerADroite(double largeurJeu) {
-        //    ****
-        //   *    *
-        //  *   ---*
-        //   *    *
-        //    ****
-        //déplacement ---->
         if (getLayoutX() < largeurJeu - LARGEUR_PERSONNAGE) {
             setLayoutX(getLayoutX() + LARGEUR_PERSONNAGE);
         }
@@ -49,26 +36,25 @@ class Personnage extends Group {
     }
 
     public void deplacerEnBas(double hauteurJeu) {
-        //    *****
-        //   *     *
-        //  *   |   *
-        //   *  |  *
-        //    *****
-
+        if (getLayoutY() < hauteurJeu - LARGEUR_PERSONNAGE) {
+            setLayoutY(getLayoutY() + LARGEUR_PERSONNAGE);
+        }
+        if (!direction.equals("bas")) {
+            direction = "bas";
+        }
     }
 
     public void deplacerEnHaut() {
-        //    *****
-        //   *  |  *
-        //  *   |   *
-        //   *     *
-        //    *****
-
+        if (getLayoutY() >= LARGEUR_PERSONNAGE) {
+            setLayoutY(getLayoutY() - LARGEUR_PERSONNAGE);
+        }
+        if (!direction.equals("haut")) {
+            direction = "haut";
+        }
     }
 
-    boolean estEnCollision(Personnage autrePersonnage) {
-        return getBoundsInParent().contains(autrePersonnage.getBoundsInParent())
-                || autrePersonnage.getBoundsInParent().contains(getBoundsInParent());
+    boolean estEnCollision(Personnage Fantome) {
+        return getBoundsInParent().contains(Fantome.getBoundsInParent())
+                || Fantome.getBoundsInParent().contains(getBoundsInParent());
     }
-
 }
