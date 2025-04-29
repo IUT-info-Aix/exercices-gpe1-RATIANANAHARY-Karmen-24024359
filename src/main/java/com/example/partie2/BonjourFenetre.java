@@ -17,10 +17,13 @@ import javafx.scene.input.MouseEvent;
 
 public class BonjourFenetre extends Application {
 
+    // Label affichant le message de bienvenue
     private Label helloLabel;
 
+    // Champ de saisi du nom de l'utilisateur
     private TextField nameField;
 
+    // Bouton déclenchant la mise à jour du texte
     private Button button;
 
     public static void main(String[] args) {
@@ -30,37 +33,41 @@ public class BonjourFenetre extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        VBox vbox = new VBox(15); // Espace de 15px entre les éléments
+        // Création d'un conteneur VBox avec ses éléments centrés
+        VBox vbox = new VBox(15); // Espace entre les éléments
         vbox.setAlignment(Pos.CENTER);
 
+        // Création et ajout du label
         this.helloLabel = new Label("Bonjour à tous !");
         vbox.getChildren().add(helloLabel);
 
+        // Création et ajout du champ de saisie
         this.nameField = new TextField("Veuillez saisir un nom");
         nameField.setMaxWidth(180.0d);
         nameField.setFont(Font.font("Courier", FontWeight.NORMAL, 12));
         vbox.getChildren().add(nameField);
 
+        // Ajout d'un gestionnaire pour appuyer sur "Entrée" dans le champ texte
         nameField.setOnAction(actionEvent -> handleButtonClick(actionEvent));
 
-        // Ajout d'un bouton avec du texte
-        Button button = new Button();
-        vbox.getChildren().add( button );
+        // Création du bouton
+        this.button = new Button();
 
-        // Chargement de l'image
-        Image image = new Image( BonjourFenetre.class.getResource("/com.example/silver_button.png").toString() );
+        // Chargement et affectation de l'image au bouton
+        Image image = new Image(BonjourFenetre.class.getResource("/com.example/silver_button.png").toString());
+        ImageView iv = new ImageView(image);
+        button.setGraphic(iv);
 
-        // Création d'un composant avec l'image peinte à l'intérieur
-        ImageView iv = new ImageView();
-        iv.setImage(image);
+        // Ajout du bouton dans le conteneur
+        vbox.getChildren().add(button);
 
-        // Intégration de l'image dans le bouton
-        button.setGraphic( iv );
-
+        // Ajout du gestionnaire d'évènement sur le bouton
         button.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> handleButtonClick(event));
 
+        // Création de la scène
         Scene scene = new Scene(vbox);
 
+        // Configuration de la fenêtre
         primaryStage.setTitle("Hello application");
         primaryStage.setWidth(400);
         primaryStage.setHeight(400);
@@ -68,6 +75,7 @@ public class BonjourFenetre extends Application {
         primaryStage.show();
     }
 
+    // Méthode appelée lors d'un clic bouton ou touche entrée
     private void handleButtonClick(Event event) {
         helloLabel.setText("Bonjour à toi, " + nameField.getText());
     }
