@@ -1,5 +1,6 @@
 package fr.amu.iut.exercice9;
 
+import javafx.animation.SequentialTransition;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -17,15 +18,30 @@ public class Animation extends Application {
         Scene scene = new Scene(root, 400, 400);
 
         Duration duration = Duration.millis(1500);
-        TranslateTransition transition1 = new TranslateTransition(duration, customButton);
-        transition1.setByX(150);
-        transition1.setByY(-150);
-        transition1.setAutoReverse(true);
-        transition1.setCycleCount(2);
 
-//        SequentialTransition st = new SequentialTransition(transition1, transition2, transition3, transition4, transition5);
+        TranslateTransition coinDroitSuperieur = new TranslateTransition(duration, customButton);
+        coinDroitSuperieur.setByX(150);
+        coinDroitSuperieur.setByY(-150);
 
-        customButton.setOnMousePressed(mouseEvent -> transition1.play());
+        TranslateTransition droite = new TranslateTransition(duration, customButton);
+        droite.setToX(150); // Déplacement vers la droite
+
+        TranslateTransition bas = new TranslateTransition(duration, customButton);
+        bas.setToY(150); // Descendre en bas
+
+        TranslateTransition gauche = new TranslateTransition(duration, customButton);
+        gauche.setToX(-150); // Aller à gauche
+
+        TranslateTransition haut = new TranslateTransition(duration, customButton);
+        haut.setToY(-150); // Remonter en haut
+
+        TranslateTransition retourCentre = new TranslateTransition(duration, customButton);
+        retourCentre.setToX(0);
+        retourCentre.setToY(0);
+
+        SequentialTransition st = new SequentialTransition(coinDroitSuperieur, bas, gauche, haut, droite, retourCentre);
+
+        customButton.setOnMousePressed(mouseEvent -> st.play());
 
         primaryStage.setTitle("Animation");
         primaryStage.setScene(scene);
