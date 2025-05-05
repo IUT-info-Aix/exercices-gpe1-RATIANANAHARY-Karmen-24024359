@@ -36,7 +36,6 @@
       </children>
    </HBox>
 
-   <!--  à compléter pour les boutons -->
    <columnConstraints>
       <ColumnConstraints maxWidth="103.0" minWidth="63.0" prefWidth="83.0" />
       <ColumnConstraints maxWidth="143.0" minWidth="103.0" prefWidth="123.0" />

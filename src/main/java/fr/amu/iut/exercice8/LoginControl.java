@@ -26,4 +26,5 @@ public class LoginControl extends GridPane {
         Id.clear();
         pwd.clear();
     }
+
 }
