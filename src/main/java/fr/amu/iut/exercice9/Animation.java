@@ -17,30 +17,27 @@ public class Animation extends Application {
         root.setCenter(customButton);
         Scene scene = new Scene(root, 400, 400);
 
-        Duration duration = Duration.millis(1500);
+        Duration duration = Duration.millis(800);
 
         TranslateTransition coinDroitSuperieur = new TranslateTransition(duration, customButton);
         coinDroitSuperieur.setByX(150);
         coinDroitSuperieur.setByY(-150);
 
         TranslateTransition droite = new TranslateTransition(duration, customButton);
-        droite.setToX(150); // Déplacement vers la droite
+        droite.setToX(150);
 
         TranslateTransition bas = new TranslateTransition(duration, customButton);
-        bas.setToY(150); // Descendre en bas
+        bas.setToY(150);
 
         TranslateTransition gauche = new TranslateTransition(duration, customButton);
-        gauche.setToX(-150); // Aller à gauche
+        gauche.setToX(-150);
 
         TranslateTransition haut = new TranslateTransition(duration, customButton);
-        haut.setToY(-150); // Remonter en haut
+        haut.setToY(-150);
 
-        TranslateTransition retourCentre = new TranslateTransition(duration, customButton);
-        retourCentre.setToX(0);
-        retourCentre.setToY(0);
-
-        SequentialTransition st = new SequentialTransition(coinDroitSuperieur, bas, gauche, haut, droite, retourCentre);
-
+        SequentialTransition st = new SequentialTransition(coinDroitSuperieur, bas, gauche, haut, droite);
+        st.setAutoReverse(true);
+        st.setCycleCount(2);
         customButton.setOnMousePressed(mouseEvent -> st.play());
 
         primaryStage.setTitle("Animation");
