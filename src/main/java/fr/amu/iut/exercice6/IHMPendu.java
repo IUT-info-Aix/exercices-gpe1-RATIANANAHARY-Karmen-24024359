@@ -51,7 +51,7 @@ public class IHMPendu extends Application {
                         imagePendu.setImage(new Image("exercice6/penduWin.png"));
                 }
             }
-             else initJeu();
+//            else initJeu();
         }
     };
 
@@ -99,7 +99,6 @@ public class IHMPendu extends Application {
         } else {
             reactiverBoutonsAlphabets();
         }
-
     }
 
     private void reactiverBoutonsAlphabets() {
@@ -109,7 +108,7 @@ public class IHMPendu extends Application {
     }
 
     private void construireMotATrouver() {
-        motATrouver = dico.getMot();
+        motATrouver = "dico";
         System.out.println(motATrouver);
         StringBuilder texteLabel = new StringBuilder();
         for (int index = 0; index < motATrouver.length(); index++) {
